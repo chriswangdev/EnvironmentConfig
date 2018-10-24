@@ -17,7 +17,8 @@ public class EnvironConfigView extends View {
     private static final int DEFAULT_WIDTH = 33;
     private static final int DEFAULT_HEIGHT = 33;
     private static final int DEFAULT_COUNTS = 5;
-    private static final int DEFAULT_TIME = 1000;
+
+    private static final int DEFAULT_TIME = 2000;//时间太短次数多容易不触发
 
     //final static int COUNTS = 5;
     //final static long DURATION = 1000;
@@ -57,13 +58,14 @@ public class EnvironConfigView extends View {
     }
 
     private void continuousClick() {
+        //System.out.println("---zzz-----s----     ----连续点击----------");
         //每次点击时，数组向前移动一位
         System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
         //为数组最后一位赋值
         mHits[mHits.length - 1] = SystemClock.uptimeMillis();
         if (mHits[0] >= (SystemClock.uptimeMillis() - duration)) {
             mHits = new long[counts];//重新初始化数组
-            //System.out.println("---zzz-----s--------连续点击了" + counts + "次");
+            System.out.println("---zzz-----s--------连续点击了" + counts + "次");
             if (listener != null) {
                 listener.onMultiClicked();
             }
