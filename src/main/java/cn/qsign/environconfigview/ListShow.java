@@ -16,14 +16,14 @@ import java.util.List;
  * Created by Administrator on 2018/10/15 0015.
  */
 
-public class ListShow {
+public class ListShow<T extends EnvironBean> {
 
     private PopupWindow popupWindow;
     private View tvChange;
-    private List<EnvironmentBean> listEnvironment;
+    private List<T> listEnvironment;
     private OnMyItemClickListener listener;
 
-    public ListShow(View tvChange, List<EnvironmentBean> listEnvironment, OnMyItemClickListener listener) {
+    public ListShow(View tvChange, List<T> listEnvironment, OnMyItemClickListener listener) {
         this.tvChange = tvChange;
         this.listEnvironment = listEnvironment;
         this.listener = listener;
@@ -35,14 +35,16 @@ public class ListShow {
             RecyclerView recyclerView = view.findViewById(R.id.rv_item_pop);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
-            recyclerView.setAdapter(new EnvironmentAdapter(listEnvironment, new EnvironmentAdapter.OnClickedListener() {
+            recyclerView.setAdapter(new EnvironmentAdapter<>(listEnvironment, new EnvironmentAdapter.OnClickedListener() {
+
                 @Override
-                public void onClicked(EnvironmentBean bean) {
+                public void onClicked(EnvironBean bean) {
                     popupWindow.dismiss();
                     if (listener != null) {
                         listener.onItemClicked(bean);
                     }
                 }
+
             }));
             popupWindow = new PopupWindow(view, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
             popupWindow.setBackgroundDrawable(new BitmapDrawable());
@@ -57,8 +59,11 @@ public class ListShow {
         }
     }
 
-    public interface OnMyItemClickListener {
-        void onItemClicked(EnvironmentBean bean);
+    public interface OnMyItemClickListener<T> {
+        void onItemClicked(T t);
+        //void onBindViewHolder(EnvironmentAdapter.ViewHolder holder, int position);
     }
+
+
 
 }

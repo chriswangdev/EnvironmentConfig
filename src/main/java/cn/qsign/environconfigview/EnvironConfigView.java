@@ -20,8 +20,6 @@ public class EnvironConfigView extends View {
 
     private static final int DEFAULT_TIME = 2000;//时间太短次数多容易不触发
 
-    //final static int COUNTS = 5;
-    //final static long DURATION = 1000;
     private int counts;// 点击次数
     private int duration;// 规定有效时间
     private long[] mHits;
@@ -40,8 +38,6 @@ public class EnvironConfigView extends View {
         super(context, attrs, defStyleAttr);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EnvironConfigView);
-//        width = a.getDimensionPixelSize(R.styleable.EnvironConfigView_width, DEFAULT_WIDTH);
-//        height = a.getDimensionPixelSize(R.styleable.EnvironConfigView_height, DEFAULT_HEIGHT);
         counts = a.getInt(R.styleable.EnvironConfigView_counts, DEFAULT_COUNTS);
         duration = a.getInt(R.styleable.EnvironConfigView_time, DEFAULT_TIME);
         a.recycle();
