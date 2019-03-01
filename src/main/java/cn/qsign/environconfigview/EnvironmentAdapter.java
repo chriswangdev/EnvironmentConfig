@@ -25,8 +25,8 @@ public class EnvironmentAdapter<T extends EnvironBean> extends RecyclerView.Adap
 
     @Override
     public EnvironmentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pop_adapter, parent, false);
-        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pop_adapter, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pop_adapter_environ, parent, false);
+        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pop_adapter_environ, null);
         return new ViewHolder(view);
     }
 
@@ -81,7 +81,7 @@ public class EnvironmentAdapter<T extends EnvironBean> extends RecyclerView.Adap
 //
 //    @Override
 //    public EnvironmentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pop_adapter, parent, false);
+//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pop_adapter_environ, parent, false);
 //        return new ViewHolder(view);
 //    }
 //

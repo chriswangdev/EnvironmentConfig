@@ -2,16 +2,12 @@ package cn.qsign.environconfigview;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
-import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.List;
@@ -36,7 +32,7 @@ public class ListShow<T extends EnvironBean> {
 
     public void showChangeList(final Activity activity) {
         if (alertDialog == null) {
-            View view = LayoutInflater.from(activity).inflate(R.layout.item_popwindow, null);
+            View view = LayoutInflater.from(activity).inflate(R.layout.item_popwindow_environ, null);
             RecyclerView recyclerView = view.findViewById(R.id.environ_view_rv_item_pop);
             TextView tvCancel = view.findViewById(R.id.btn_cancel);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
@@ -112,7 +108,7 @@ public class ListShow<T extends EnvironBean> {
 //
 //    public void showChangeList(Context context) {
 //        if (popupWindow == null) {
-//            View view = LayoutInflater.from(context).inflate(R.layout.item_popwindow, null);
+//            View view = LayoutInflater.from(context).inflate(R.layout.item_popwindow_environ, null);
 //            RecyclerView recyclerView = view.findViewById(R.id.environ_view_rv_item_pop);
 //            TextView tvCancel = view.findViewById(R.id.btn_cancel);
 //            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);

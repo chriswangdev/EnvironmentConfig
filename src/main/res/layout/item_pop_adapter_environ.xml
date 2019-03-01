@@ -3,7 +3,7 @@
     android:id="@+id/environ_view_tv_item_pop_adapter"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/selector_column"
+    android:background="@drawable/selector_column_environ"
     android:clickable="true"
     android:gravity="center"
     android:padding="10dp" />
@@ -16,7 +16,7 @@
         <!--android:id="@+id/environ_view_tv_item_pop_adapter"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
-        <!--android:background="@drawable/selector_column"-->
+        <!--android:background="@drawaselector_column_environlumn"-->
         <!--android:clickable="true"-->
         <!--android:padding="10dp" />-->
 
