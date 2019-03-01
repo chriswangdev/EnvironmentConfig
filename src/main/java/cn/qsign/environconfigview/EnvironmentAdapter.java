@@ -26,6 +26,7 @@ public class EnvironmentAdapter<T extends EnvironBean> extends RecyclerView.Adap
     @Override
     public EnvironmentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pop_adapter, parent, false);
+        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pop_adapter, null);
         return new ViewHolder(view);
     }
 
@@ -40,6 +41,11 @@ public class EnvironmentAdapter<T extends EnvironBean> extends RecyclerView.Adap
                     listener.onClicked(bean);
             }
         });
+//        if (position == list.size() - 1){
+//            holder.viewLine.setVisibility(View.GONE);
+//        } else {
+//            holder.viewLine.setVisibility(View.VISIBLE);
+//        }
     }
 
 
@@ -49,10 +55,12 @@ public class EnvironmentAdapter<T extends EnvironBean> extends RecyclerView.Adap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textView;
+        TextView textView;
+        //View viewLine;
         ViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.tv_item_pop_adapter);
+            textView = itemView.findViewById(R.id.environ_view_tv_item_pop_adapter);
+            //viewLine = itemView.findViewById(R.id.environ_view_line);
         }
     }
 

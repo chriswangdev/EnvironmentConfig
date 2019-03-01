@@ -1,11 +1,16 @@
 package cn.qsign.environconfigview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -24,7 +29,12 @@ public class EnvironConfigView extends View {
     private int duration;// 规定有效时间
     private long[] mHits;
 
-    private OnMultiClickedListener listener;
+    //private OnMultiClickedListener listener;
+
+    private View view;
+    private Activity activity;
+    private List<? extends EnvironBean> listEnvironment = new ArrayList<>();
+    private ListShow listShow;
 
     public EnvironConfigView(Context context) {
         this(context, null);
@@ -50,7 +60,17 @@ public class EnvironConfigView extends View {
                 continuousClick();
             }
         });
+        /*listShow = new ListShow<>(view, listEnvironment, new ListShow.OnMyItemClickListener<EnvironBean>() {
 
+            @Override
+            public void onItemClicked(EnvironBean environBean) {
+                //Toast.makeText(activity, environBean.getName(), Toast.LENGTH_SHORT).show();
+                System.out.println("---zzz----------onItemClicked : name = " + environBean.getName());
+                if (listener != null) {
+                    listener.onMultiShowedClicked(environBean);
+                }
+            }
+        });*/
     }
 
     private void continuousClick() {
@@ -61,10 +81,8 @@ public class EnvironConfigView extends View {
         mHits[mHits.length - 1] = SystemClock.uptimeMillis();
         if (mHits[0] >= (SystemClock.uptimeMillis() - duration)) {
             mHits = new long[counts];//重新初始化数组
-            System.out.println("---zzz-----s--------连续点击了" + counts + "次");
-            if (listener != null) {
-                listener.onMultiClicked();
-            }
+            //System.out.println("---zzz-----s--------连续点击了" + counts + "次");
+            listShow.showChangeList(activity);
         }
     }
 
@@ -93,12 +111,37 @@ public class EnvironConfigView extends View {
         return result;
     }
 
-    public void setMultiClicked(OnMultiClickedListener listener) {
-        this.listener = listener;
+    /**
+     * 点击后回调
+     * @param activity
+     * @param view EnvironConfigView
+     * @param listEnvironment
+     * @param listener
+     */
+    public void setMultiClicked(Activity activity, View view, List<? extends EnvironBean> listEnvironment, final OnMultiClickedListener listener) {
+        //this.listener = listener;
+        this.view = view;
+        this.activity = activity;
+        this.listEnvironment = listEnvironment;
+        listShow = new ListShow<>(view, listEnvironment, new ListShow.OnMyItemClickListener<EnvironBean>() {
+
+            @Override
+            public void onItemClicked(EnvironBean environBean) {
+                //Toast.makeText(activity, environBean.getName(), Toast.LENGTH_SHORT).show();
+                System.out.println("---zzz----------onItemClicked : name = " + environBean.getName());
+                if (listener != null) {
+                    listener.onMultiShowedClicked(environBean);
+                }
+            }
+        });
     }
 
-    public interface OnMultiClickedListener {
-        void onMultiClicked();
+    /**
+     * 点击后回调
+     * @param <T> 继承自EnvironBean
+     */
+    public interface OnMultiClickedListener<T extends EnvironBean> {
+        void onMultiShowedClicked(T t);
     }
 
 }
