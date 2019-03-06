@@ -23,7 +23,7 @@ public class EnvironConfigView extends View {
     private static final int DEFAULT_HEIGHT = 33;
     private static final int DEFAULT_COUNTS = 5;
 
-    private static final int DEFAULT_TIME = 2000;//时间太短次数多容易不触发
+    private static final int DEFAULT_TIME = 1000;//时间太短次数多容易不触发
 
     private int counts;// 点击次数
     private int duration;// 规定有效时间
@@ -80,7 +80,10 @@ public class EnvironConfigView extends View {
         //为数组最后一位赋值
         mHits[mHits.length - 1] = SystemClock.uptimeMillis();
         if (mHits[0] >= (SystemClock.uptimeMillis() - duration)) {
-            mHits = new long[counts];//重新初始化数组
+            //mHits = new long[counts];//重新初始化数组
+            for (int i=0; i < counts; i++) {
+                mHits[i] = 0;
+            }
             //System.out.println("---zzz-----s--------连续点击了" + counts + "次");
             if (listShow != null) {
                 listShow.showChangeList(activity);
@@ -116,16 +119,15 @@ public class EnvironConfigView extends View {
     /**
      * 点击后回调
      * @param activity
-     * @param view EnvironConfigView
      * @param listEnvironment
      * @param listener
      */
-    public void setMultiClicked(Activity activity, View view, List<? extends EnvironBean> listEnvironment, final OnMultiClickedListener listener) {
+    public void setMultiClicked(Activity activity, List<? extends EnvironBean> listEnvironment, final OnMultiClickedListener listener) {
         //this.listener = listener;
-        this.view = view;
+//        this.view = view;
         this.activity = activity;
         this.listEnvironment = listEnvironment;
-        listShow = new ListShow<>(view, listEnvironment, new ListShow.OnMyItemClickListener<EnvironBean>() {
+        listShow = new ListShow<>(listEnvironment, new ListShow.OnMyItemClickListener<EnvironBean>() {
 
             @Override
             public void onItemClicked(EnvironBean environBean) {

@@ -2,9 +2,7 @@ package cn.qsign.environconfigview;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+import android.content.DialogInterface;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -23,13 +20,10 @@ import java.util.List;
 public class ListShow<T extends EnvironBean> {
 
     private AlertDialog alertDialog;
-    private AlertDialog.Builder builder;
-    private View tvChange;
     private List<T> listEnvironment;
     private OnMyItemClickListener listener;
 
-    public ListShow(View tvChange, List<T> listEnvironment, OnMyItemClickListener listener) {
-        this.tvChange = tvChange;
+    public ListShow(List<T> listEnvironment, OnMyItemClickListener listener) {
         this.listEnvironment = listEnvironment;
         this.listener = listener;
     }
@@ -57,32 +51,30 @@ public class ListShow<T extends EnvironBean> {
                         listener.onItemClicked(bean);
                     }
                 }
-
             }));
             tvCancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    setBackgroundAlpha(activity, 1f);
                     alertDialog.dismiss();
                 }
             });
-            builder = new AlertDialog.Builder(activity, R.style.dialog);
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.dialog);
             alertDialog = builder.create();
             //final AlertDialog alertDialog = builder.create();
             alertDialog.setCancelable(false);
             alertDialog.setCanceledOnTouchOutside(false);
+            alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    setBackgroundAlpha(activity, 1f);
+                }
+            });
+
             setBackgroundAlpha(activity, 0.5f);
             alertDialog.show();
             alertDialog.getWindow().setContentView(view);
-
-//            popupWindow = new PopupWindow(view, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-//            popupWindow.setBackgroundDrawable(new BitmapDrawable());
-//            popupWindow.setOutsideTouchable(false);
-//            //popupWindow.showAtLocation();
-//            popupWindow.showAsDropDown(tvChange, -164, 0);
         } else {
             if (!alertDialog.isShowing()) {
-                //alertDialog.showAsDropDown(tvChange, -164, 0);
                 setBackgroundAlpha(activity, 0.5f);
                 alertDialog.show();
             }

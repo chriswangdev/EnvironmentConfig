@@ -21,14 +21,13 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/environ_view_rv_item_pop"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/shape_white_environ" />
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/btn_cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_column_environ"
+        android:background="@drawable/selector_column_environ_bottom_round"
         android:gravity="center_horizontal"
         android:padding="10dp"
         android:text="取消" />
