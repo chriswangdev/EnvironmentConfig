@@ -35,10 +35,6 @@ public class ListShow<T extends EnvironBean> {
     }
 
     public void showChangeList(final Activity activity) {
-        if (listEnvironment.size() == 0) {
-            Toast.makeText(activity, "地址列表为空", Toast.LENGTH_SHORT).show();
-            return;
-        }
         if (alertDialog == null) {
             View view = LayoutInflater.from(activity).inflate(R.layout.item_popwindow_environ, null);
             RecyclerView recyclerView = view.findViewById(R.id.environ_view_rv_item_pop);
@@ -75,7 +71,7 @@ public class ListShow<T extends EnvironBean> {
             //final AlertDialog alertDialog = builder.create();
             alertDialog.setCancelable(false);
             alertDialog.setCanceledOnTouchOutside(false);
-            setBackgroundAlpha(activity, 0.9f);
+            setBackgroundAlpha(activity, 0.5f);
             alertDialog.show();
             alertDialog.getWindow().setContentView(view);
 
@@ -87,6 +83,7 @@ public class ListShow<T extends EnvironBean> {
         } else {
             if (!alertDialog.isShowing()) {
                 //alertDialog.showAsDropDown(tvChange, -164, 0);
+                setBackgroundAlpha(activity, 0.5f);
                 alertDialog.show();
             }
         }
