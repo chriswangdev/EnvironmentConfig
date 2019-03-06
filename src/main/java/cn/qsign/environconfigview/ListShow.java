@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -31,6 +32,10 @@ public class ListShow<T extends EnvironBean> {
     }
 
     public void showChangeList(final Activity activity) {
+        if (listEnvironment.size() == 0) {
+            Toast.makeText(activity, "地址列表为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (alertDialog == null) {
             View view = LayoutInflater.from(activity).inflate(R.layout.item_popwindow_environ, null);
             RecyclerView recyclerView = view.findViewById(R.id.environ_view_rv_item_pop);
@@ -58,7 +63,7 @@ public class ListShow<T extends EnvironBean> {
                     alertDialog.dismiss();
                 }
             });
-            builder = new AlertDialog.Builder(activity);
+            builder = new AlertDialog.Builder(activity, R.style.dialog);
             alertDialog = builder.create();
             //final AlertDialog alertDialog = builder.create();
             alertDialog.setCancelable(false);

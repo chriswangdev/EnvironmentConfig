@@ -33,36 +33,4 @@
         android:padding="10dp"
         android:text="取消" />
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:gravity="center_horizontal"-->
-    <!--android:orientation="vertical">-->
-
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:padding="10dp"-->
-    <!--android:gravity="center_horizontal"-->
-    <!--android:text="提示\n选择服务器地址"-->
-    <!--android:background="@drawaselector_column_environlumn"/>-->
-
-    <!--<android.support.v7.widget.RecyclerView-->
-    <!--android:id="@+id/environ_view_rv_item_pop"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:background="@drawashape_white_environhite"/>-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/btn_cancel"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="5dp"-->
-    <!--android:padding="10dp"-->
-    <!--android:gravity="center_horizontal"-->
-    <!--android:text="取消"-->
-    <!--android:background="@drawaselector_column_environlumn"/>-->
-
-    <!--</LinearLayout>-->
-
 </LinearLayout>

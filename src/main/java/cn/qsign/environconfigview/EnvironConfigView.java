@@ -82,7 +82,9 @@ public class EnvironConfigView extends View {
         if (mHits[0] >= (SystemClock.uptimeMillis() - duration)) {
             mHits = new long[counts];//重新初始化数组
             //System.out.println("---zzz-----s--------连续点击了" + counts + "次");
-            listShow.showChangeList(activity);
+            if (listShow != null) {
+                listShow.showChangeList(activity);
+            }
         }
     }
 
