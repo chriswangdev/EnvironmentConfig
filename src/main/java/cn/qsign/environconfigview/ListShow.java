@@ -2,6 +2,9 @@ package cn.qsign.environconfigview;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -43,7 +46,11 @@ public class ListShow<T extends EnvironBean> {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
             linearLayoutManager.setAutoMeasureEnabled(true);
             recyclerView.setLayoutManager(linearLayoutManager);
-            recyclerView.addItemDecoration(new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
+            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL);
+            //dividerItemDecoration.setDrawable(activity.getDrawable(R.drawable.shape_decoration));
+            dividerItemDecoration.setDrawable(activity.getResources().getDrawable(R.drawable.shape_decoration));
+            recyclerView.addItemDecoration(dividerItemDecoration);
+            //recyclerView.addItemDecoration(new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
             //recyclerView.addItemDecoration(new DisplayUtils.SpacesItemDecoration(activity, DividerItemDecoration.VERTICAL));
             recyclerView.setAdapter(new EnvironmentAdapter<>(listEnvironment, new EnvironmentAdapter.OnClickedListener() {
 
