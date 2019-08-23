@@ -2,12 +2,13 @@ package cn.qsign.environconfigview;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -56,26 +57,33 @@ public class ListShow<T extends EnvironBean> {
                 @Override
                 public void onClick(View v) {
                     alertDialog.dismiss();
+                    setBackgroundAlpha(activity, 1f);
                 }
             });
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.dialog);
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);//, R.style.dialog);
             alertDialog = builder.create();
             //final AlertDialog alertDialog = builder.create();
             alertDialog.setCancelable(false);
             alertDialog.setCanceledOnTouchOutside(false);
-            alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    setBackgroundAlpha(activity, 1f);
-                }
-            });
+//            alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+//                @Override
+//                public void onDismiss(DialogInterface dialog) {
+//                    setBackgroundAlpha(activity, 1f);
+//                }
+//            });
 
-            setBackgroundAlpha(activity, 0.5f);
+            setBackgroundAlpha(activity, 0.8f);
             alertDialog.show();
-            alertDialog.getWindow().setContentView(view);
+            //alertDialog.getWindow().setContentView(view);
+            Window window = alertDialog.getWindow();
+            if (window != null) {
+                window.setBackgroundDrawable(new ColorDrawable());
+                window.setWindowAnimations(R.style.dialogAnimation);
+                window.setContentView(view);
+            }
         } else {
             if (!alertDialog.isShowing()) {
-                setBackgroundAlpha(activity, 0.5f);
+                setBackgroundAlpha(activity, 0.8f);
                 alertDialog.show();
             }
         }
@@ -90,66 +98,4 @@ public class ListShow<T extends EnvironBean> {
     public interface OnMyItemClickListener<T extends EnvironBean> {
         void onItemClicked(T t);
     }
-
-
-
 }
-//public class ListShow<T extends EnvironBean> {
-//
-//    private PopupWindow popupWindow;
-//    private View tvChange;
-//    private List<T> listEnvironment;
-//    private OnMyItemClickListener listener;
-//
-//    public ListShow(View tvChange, List<T> listEnvironment, OnMyItemClickListener listener) {
-//        this.tvChange = tvChange;
-//        this.listEnvironment = listEnvironment;
-//        this.listener = listener;
-//    }
-//
-//    public void showChangeList(Context context) {
-//        if (popupWindow == null) {
-//            View view = LayoutInflater.from(context).inflate(R.layout.item_popwindow_environ, null);
-//            RecyclerView recyclerView = view.findViewById(R.id.environ_view_rv_item_pop);
-//            TextView tvCancel = view.findViewById(R.id.btn_cancel);
-//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-//            linearLayoutManager.setAutoMeasureEnabled(true);
-//            recyclerView.setLayoutManager(linearLayoutManager);
-//            //recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
-//            recyclerView.addItemDecoration(new DisplayUtils.SpacesItemDecoration(context, DividerItemDecoration.VERTICAL));
-//            recyclerView.setAdapter(new EnvironmentAdapter<>(listEnvironment, new EnvironmentAdapter.OnClickedListener() {
-//
-//                @Override
-//                public void onClicked(EnvironBean bean) {
-//                    popupWindow.dismiss();
-//                    if (listener != null) {
-//                        listener.onItemClicked(bean);
-//                    }
-//                }
-//
-//            }));
-//            tvCancel.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    popupWindow.dismiss();
-//                }
-//            });
-//            popupWindow = new PopupWindow(view, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-//            popupWindow.setBackgroundDrawable(new BitmapDrawable());
-//            popupWindow.setOutsideTouchable(false);
-//            //popupWindow.showAtLocation();
-//            popupWindow.showAsDropDown(tvChange, -164, 0);
-//        } else {
-//            if (!popupWindow.isShowing()) {
-//                popupWindow.showAsDropDown(tvChange, -164, 0);
-//            }
-//        }
-//    }
-//
-//    public interface OnMyItemClickListener<T extends EnvironBean> {
-//        void onItemClicked(T t);
-//    }
-//
-//
-//
-//}

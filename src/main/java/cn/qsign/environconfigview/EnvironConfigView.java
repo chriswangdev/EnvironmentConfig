@@ -23,10 +23,10 @@ public class EnvironConfigView extends View {
     private static final int DEFAULT_HEIGHT = 33;
     private static final int DEFAULT_COUNTS = 5;
 
-    private static final int DEFAULT_TIME = 1000;//时间太短次数多容易不触发
+    private static final int DEFAULT_TIME = 1000;//
 
-    private int counts;// 点击次数
-    private int duration;// 规定有效时间
+    private int counts;//
+    private int duration;//
     private long[] mHits;
 
     //private OnMultiClickedListener listener;
@@ -74,17 +74,12 @@ public class EnvironConfigView extends View {
     }
 
     private void continuousClick() {
-        //System.out.println("---zzz-----s----     ----连续点击----------");
-        //每次点击时，数组向前移动一位
         System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
-        //为数组最后一位赋值
         mHits[mHits.length - 1] = SystemClock.uptimeMillis();
         if (mHits[0] >= (SystemClock.uptimeMillis() - duration)) {
-            //mHits = new long[counts];//重新初始化数组
             for (int i=0; i < counts; i++) {
                 mHits[i] = 0;
             }
-            //System.out.println("---zzz-----s--------连续点击了" + counts + "次");
             if (listShow != null) {
                 listShow.showChangeList(activity);
             }
@@ -103,12 +98,10 @@ public class EnvironConfigView extends View {
         int specSize = MeasureSpec.getSize(measureSpec);
 
         switch (specMode) {
-            // Mode = UNSPECIFIED,AT_MOST时使用提供的默认大小
             case MeasureSpec.UNSPECIFIED:
                 result = size;
                 break;
             case MeasureSpec.AT_MOST:
-                // Mode = EXACTLY时使用测量的大小
             case MeasureSpec.EXACTLY:
                 result = specSize;
                 break;
@@ -116,12 +109,6 @@ public class EnvironConfigView extends View {
         return result;
     }
 
-    /**
-     * 点击后回调
-     * @param activity
-     * @param listEnvironment
-     * @param listener
-     */
     public void setMultiClicked(Activity activity, List<? extends EnvironBean> listEnvironment, final OnMultiClickedListener listener) {
         //this.listener = listener;
 //        this.view = view;
@@ -132,7 +119,7 @@ public class EnvironConfigView extends View {
             @Override
             public void onItemClicked(EnvironBean environBean) {
                 //Toast.makeText(activity, environBean.getName(), Toast.LENGTH_SHORT).show();
-                System.out.println("---zzz----------onItemClicked : name = " + environBean.getName());
+                //System.out.println("---zzz----------onItemClicked : name = " + environBean.getName());
                 if (listener != null) {
                     listener.onMultiShowedClicked(environBean);
                 }
@@ -140,10 +127,6 @@ public class EnvironConfigView extends View {
         });
     }
 
-    /**
-     * 点击后回调
-     * @param <T> 继承自EnvironBean
-     */
     public interface OnMultiClickedListener<T extends EnvironBean> {
         void onMultiShowedClicked(T t);
     }

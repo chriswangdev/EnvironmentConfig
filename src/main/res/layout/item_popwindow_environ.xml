@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/shape_white_environ"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/shape_white_environ"
         android:gravity="center_horizontal"
-        android:padding="10dp"
-        android:text="提示\n选择服务器地址" />
+        android:orientation="vertical">
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/line_height"
-        android:background="@color/colorEaeaea" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="提示\n选择服务器地址" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/environ_view_rv_item_pop"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/line_height"
+            android:background="@color/colorEaeaea" />
 
-    <TextView
-        android:id="@+id/btn_cancel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/selector_column_environ_bottom_round"
-        android:gravity="center_horizontal"
-        android:padding="10dp"
-        android:text="取消" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/environ_view_rv_item_pop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_column_environ_bottom_round"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="取消" />
+
+    </LinearLayout>
 
 </LinearLayout>
